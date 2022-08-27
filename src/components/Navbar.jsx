@@ -47,10 +47,10 @@ function Navbar({ changeTheme, currentTheme }) {
                 <a href="/login"> Login/Reg</a>
               </li>
               <li>
-                <a href="#"> Docs</a>
+                <a href="#"> BUY</a>
               </li>
               <li>
-                <a href="#"> Help</a>
+                <a href="/sell"> SELL</a>
               </li>
               <li onClick={changeTheme} className="color-mode">
                 {currentTheme === "dark" ? (

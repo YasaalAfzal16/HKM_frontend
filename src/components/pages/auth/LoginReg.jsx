@@ -22,7 +22,7 @@ const LoginReg = () => {
   };
   return (
     <>
-      <Grid container sx={{ height: "90vh" }}>
+      <Grid container sx={{ height: "50vh" }}>
         <Grid
           item
           lg={7}
