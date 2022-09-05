@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import home from "../assets/home.png";
 import Services from "./Services";
@@ -8,8 +8,29 @@ import Products from "./Products";
 import Promo from "./Promo";
 import Choose from "./Choose";
 import Footer from "./Footer";
-
+import axios from "axios";
+import { Grid, Card } from "@mui/material";
+import DisplaySrchBook from "./DisplaySrchBook";
 function Home() {
+  const [searchItem, setSearchItem] = useState("");
+  const [bookData, setBookData] = useState([]);
+  const searchBook = (e) => {
+    if (e.key === "Enter") {
+      axios
+        .get(
+          "https://www.googleapis.com/books/v1/volumes?q=" +
+            searchItem +
+            "&key=AIzaSyABSGsmjA2kymz682cek_OytPLzCJ5UBDU" +
+            "&maxResults=40"
+        )
+        .then((data) => {
+          console.log(data.data.items);
+          setBookData(data.data.items);
+        })
+        .catch((error) => console.log(error));
+    }
+  };
+
   return (
     <div>
       <div className="home">
@@ -17,7 +38,15 @@ function Home() {
           <div className="title-container">
             <h2>Browse Million Products for Your Needs</h2>
             <div className="input-container">
-              <input type="text" placeholder="I want to buy..." />
+              <input
+                type="text"
+                placeholder="Type bookname..."
+                value={searchItem}
+                onChange={(e) => {
+                  setSearchItem(e.target.value);
+                }}
+                onKeyPress={searchBook}
+              />
               <div className="icon">
                 <BiSearch />
               </div>
@@ -28,15 +57,22 @@ function Home() {
           </div>
         </div>
       </div>
-      <Services />
-      <Categories />
-      <Recommend />
-      <Choose />
-      <Products />
-      <Promo />
+
+      {bookData.length !== 0 ? (
+        <DisplaySrchBook book={bookData} />
+      ) : (
+        <>
+          <Services />
+          <Categories />
+          <Recommend />
+          <Choose />
+          <Products />
+          <Promo />
+        </>
+      )}
+
       <Footer />
     </div>
   );
 }
-
 export default Home;

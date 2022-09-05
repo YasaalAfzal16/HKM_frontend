@@ -33,6 +33,8 @@ const BookSellingPage = () => {
   });
   
   const navigate = useNavigate();
+  const navToReq=()=>{navigate('/request')}
+  const navToHome=()=>{navigate('/')}
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -81,6 +83,7 @@ const BookSellingPage = () => {
             id="book-selling-form"
             onSubmit={handleSubmit}
           >
+          <h1>Enter book details</h1>
             <TextField
               required
               fullWidth
@@ -177,11 +180,33 @@ const BookSellingPage = () => {
               <Button
                 type="submit"
                 variant="contained"
+                color="error"
                 sx={{ mt: 3, mb: 2, px: 5 }}
               >
                 SUBMIT
               </Button>
             </Box>
+            <Box textAlign="center">
+              <Button 
+                variant="contained"
+                color="success"
+                sx={{ mt: 3, mb: 2, px: 5 }}
+                onClick={navToHome}
+              >
+                BACK
+              </Button>
+            </Box>
+            <Box textAlign="left">
+              <Button 
+                variant="contained"
+                color="warning"
+                sx={{ mt: 3, mb: 2, px: 5 }}
+                onClick={navToReq}
+              >
+                Request a Book 
+              </Button>
+            </Box>
+            
             {error.status ? (
               <Alert severity={error.type}>{error.msg}</Alert>
             ) : (

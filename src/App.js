@@ -13,6 +13,7 @@ import Contact from "./components/Contact";
 import LoginReg from "./components/pages/auth/LoginReg";
 import PwordResetEmail from "./components/pages/auth/PwordResetEmail";
 import ResetPWD from "./components/pages/auth/ResetPWD";
+import BookRequestPage from "./components/BookRequestPage";
 import BookSellingPage from "./components/BookSellingPage";
 
 function App() {
@@ -61,16 +62,16 @@ function App() {
             <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<LoginReg />} />
-            <Route path="pwordReset" element={<PwordResetEmail />}/>
-            <Route path="reset" element={<ResetPWD/>} />
-            <Route path="sell" element={<BookSellingPage />}/>
+            <Route path="pwordReset" element={<PwordResetEmail />} />
+            <Route path="reset" element={<ResetPWD />} />
+            <Route path="request" element={<BookRequestPage />} />
+            <Route path="sell" element={<BookSellingPage />} />
           </Route>
-          <Route path="*" element={<h1>Error 404... Page not found !!!  </h1>}/>
+          <Route path="*" element={<h1>Error 404... Page not found !!! </h1>} />
         </Routes>
       </BrowserRouter>
 
       {/* <Home /> */}
-      
     </div>
   );
 }
