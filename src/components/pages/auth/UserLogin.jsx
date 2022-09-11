@@ -19,8 +19,20 @@ const UserLogin = () => {
     if (actualData.email && actualData.password) {
       console.log(actualData);
       document.getElementById("login-form").reset();
-      setError({ status: true, msg: "Login successful!", type: "success" });
-      navigate("/");
+      /********* */
+      if (
+        actualData.email === "admin@gmail.com" &&
+        actualData.password === "admin123456"
+      ) {
+        alert("Welcome ADMIN !!!");
+        setTimeout(() => {
+          navigate("/homeDashboard");
+        }, 2000);
+      } else {
+        setError({ status: true, msg: "Login successful!", type: "success" });
+        navigate("/");
+      }
+      /******** */
     } else {
       setError({ status: true, msg: "All fields are required", type: "error" });
     }

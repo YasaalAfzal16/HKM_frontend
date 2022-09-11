@@ -1,10 +1,11 @@
 import { Button, Grid, Rating } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../scss/_bkDetails.scss";
 
-
 const BkDetails = ({ show, item }) => {
-  if (!(show)) {
+  const navigate = useNavigate();
+  if (!show) {
     return null;
   }
 
@@ -21,39 +22,42 @@ const BkDetails = ({ show, item }) => {
   return (
     <div className="overlay">
       <div className="overlay-inner">
-
         <div className="inner-box">
-        <Grid container spacing={5} p={5} >
+          <Grid container spacing={5} p={5}>
             <Grid lg={6} md={6} sm={6} xs={6}>
-                <img src={thumbNail} alt={tiTle} />
-                <Grid>
+              <img src={thumbNail} alt={tiTle} />
+              <Grid>
                 <Rating value={avgRating} readOnly precision={0.5} />
-                </Grid>
+              </Grid>
             </Grid>
-            
+
             <Grid lg={6} md={6} sm={6} xs={6}>
-                <h2 >{tiTle}</h2>
-                {/* <h3 >{autHor}</h3> */}
-                {autHor.map((author,i)=><h4  key={i}>{autHor.length>=2?`${i+1}'.'`:''}{author}</h4>)}
-                <h6>Pages: {paGes}</h6>
-                <h6>
+              <h2>{tiTle}</h2>
+              {/* <h3 >{autHor}</h3> */}
+              {autHor.map((author, i) => (
+                <h4 key={i}>
+                  {autHor.length >= 2 ? `${i + 1}.` : ""}
+                  {author}
+                </h4>
+              ))}
+              <h6>Pages: {paGes}</h6>
+              <h6>
                 {pubLisher} | <span>{dateOfPublish}</span>
-                </h6>
-                <Button variant="contained" color="error" href='/'>Back</Button>
-                
+              </h6>
+              <Button variant="contained" color="error" href="/">
+                Back
+              </Button>
             </Grid>
             <Grid>
-            <hr/><hr/>
-            <h5><bold>Description</bold></h5>
-                {deScription}
+              <hr />
+              <hr />
+              <h5>Description</h5>
+              {deScription}
             </Grid>
-        </Grid>
-          
+          </Grid>
         </div>
       </div>
     </div>
-    
-
   );
 };
 

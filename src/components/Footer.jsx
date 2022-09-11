@@ -41,12 +41,10 @@ function Footer() {
     <footer className="py-3 mx-3">
       <div className="brand-container">
         <div className="brand">
-          <span>ehya</span>
+          <span>HKM</span>
           <span className="dot">.</span>
         </div>
-        <p className="description">
-          Build a modern and creative website with crealand
-        </p>
+        <p className="description">Buy & Sell new or used books.</p>
 
         <ul className="social-links">
           {socialLinks.map((link, index) => (

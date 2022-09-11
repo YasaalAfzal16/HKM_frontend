@@ -1,10 +1,8 @@
 import { Grid, Card, Typography, Tabs, Tab, Box } from "@mui/material";
-import { fontWeight } from "@mui/system";
 import { useState } from "react";
 import login1 from "../../../assets/login1.png";
 import UserLogin from "./UserLogin";
 import UserRegistration from "./UserRegistration";
-import AutoStoriesSharpIcon from "@mui/icons-material/AutoStoriesSharp";
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
@@ -67,9 +65,6 @@ const LoginReg = () => {
                   <UserRegistration />
                 </TabPanel>
               </Box>
-            </Box>
-            <Box textAlign="center" sx={{ mt: 2 }}>
-              <AutoStoriesSharpIcon sx={{ color: "blue", fontSize: 100 }} />
             </Box>
           </Card>
         </Grid>

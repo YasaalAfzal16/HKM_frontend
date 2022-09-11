@@ -3,8 +3,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { ImSun } from "react-icons/im";
 import { BsFillMoonFill } from "react-icons/bs";
+import { Link, NavLink } from "react-router-dom";
 
-function Navbar({ changeTheme, currentTheme }) {
+function Navbar({ isLogged }) {
   const [navState, setNavState] = useState(false);
   const html = document.querySelector("html");
   html.addEventListener("click", () => setNavState(false));
@@ -16,49 +17,77 @@ function Navbar({ changeTheme, currentTheme }) {
           <span className="dot">.</span>
         </div>
         <div className="links-container" onClick={(e) => e.stopPropagation()}>
-          <div className="toggle">
-            {navState ? (
-              <MdClose onClick={() => setNavState(false)} />
-            ) : (
-              <GiHamburgerMenu
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setNavState(true);
-                }}
-              />
-            )}
-            <div onClick={changeTheme}>
-              {currentTheme === "dark" ? (
-                <ImSun className="sun" />
-              ) : (
-                <BsFillMoonFill className="moon" />
-              )}
-            </div>
-          </div>
           <div className={`links ${navState ? "responsive-toggle" : ""}`}>
             <ul>
               <li>
-                <a href="/">Home</a>
+                <NavLink
+                  to="/"
+                  style={({ isActive }) =>
+                    isActive ? { color: "blue" } : { color: "" }
+                  }
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <a href="/contact"> Contact</a>
+                <NavLink
+                  to="/contact"
+                  style={({ isActive }) =>
+                    isActive ? { color: "blue" } : { color: "" }
+                  }
+                >
+                  Contact
+                </NavLink>
               </li>
-              <li>
-                <a href="/login"> Login/Reg</a>
-              </li>
-              <li>
-                <a href="/request"> Request Book</a>
-              </li>
-              <li>
-                <a href="/sell"> Sell Book</a>
-              </li>
-              <li onClick={changeTheme} className="color-mode">
-                {currentTheme === "dark" ? (
-                  <ImSun className="sun" />
-                ) : (
-                  <BsFillMoonFill className="moon" />
-                )}
-              </li>
+
+              {!isLogged && (
+                <li>
+                  <NavLink
+                    to="/login"
+                    style={({ isActive }) =>
+                      isActive ? { color: "blue" } : { color: "" }
+                    }
+                  >
+                    Login/Reg
+                  </NavLink>
+                </li>
+              )}
+              {isLogged && (
+                <li>
+                  <NavLink
+                    to="/login"
+                    style={({ isActive }) =>
+                      isActive ? { color: "blue" } : { color: "" }
+                    }
+                  >
+                    LOGOUT
+                  </NavLink>
+                </li>
+              )}
+              {/* {isLogged && (
+                <li>
+                  <NavLink
+                    to="/request"
+                    style={({ isActive }) =>
+                      isActive ? { color: "blue" } : { color: "" }
+                    }
+                  >
+                    Request Book
+                  </NavLink>
+                </li>
+              )} */}
+              {isLogged && (
+                <li>
+                  <NavLink
+                    to="/sell"
+                    style={({ isActive }) =>
+                      isActive ? { color: "blue" } : { color: "" }
+                    }
+                  >
+                    Sell Book
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>

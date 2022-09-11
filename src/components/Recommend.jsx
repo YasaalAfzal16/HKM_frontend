@@ -1,26 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import recommend1 from "../assets/recommend1.jpg";
 import recommend2 from "../assets/recommend2.jpg";
 import recommend3 from "../assets/recommend3.jpeg";
 import recommend4 from "../assets/recommend4.jpg";
+/************************** */
+import mughal from "../assets/mughal.jpg";
+import pak_country from "../assets/pak_country.jpg";
+import sherlock_holmes from "../assets/sherlock_holmes.jpg";
+import war_and_peace from "../assets/war_and_peace.jpg";
+import { Navigate } from "react-router-dom";
 
 function Recommend() {
+  const [bk_nm, set_Bk_nm] = useState();
+
+  let bookName = {
+    recomm_bookName: bk_nm,
+  };
+
   const data = [
     {
-      image: recommend1,
-      text: "The best Anti Aging Cream with cheap price",
+      image: mughal,
+      text: "The Last Mughal",
     },
     {
-      image: recommend2,
-      text: "Best budget Headphone for RPG Gamers",
+      image: pak_country,
+      text: "Pakistan A Hard Contry",
     },
     {
-      image: recommend3,
-      text: "Have a much project? You must have this Savage Laptop",
+      image: sherlock_holmes,
+      text: "The Adventures of Sherlock Holmes",
     },
     {
-      image: recommend4,
-      text: "Bored work from home. You can make juice for your health",
+      image: war_and_peace,
+      text: "War And Peace",
     },
   ];
 
@@ -34,13 +47,23 @@ function Recommend() {
           {data.map(({ image, text }, index) => {
             return (
               <div className="category" key={index}>
-                <img src={image} alt="Category" />
-                <h4>{text}</h4>
+                <a>
+                  <img
+                    src={image}
+                    alt="Category"
+                    onClick={() => {
+                      set_Bk_nm(text);
+                      <Navigate to="/recomm_book" />;
+                    }}
+                  />
+                </a>
+                <h3>{text}</h3>
               </div>
             );
           })}
         </div>
-        <button>Show All</button>
+        {/* <BkDetails show={show} item={bookItem} /> */}
+        {/* <button>Show All</button> */}
       </div>
     </div>
   );

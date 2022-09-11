@@ -15,48 +15,33 @@ import PwordResetEmail from "./components/pages/auth/PwordResetEmail";
 import ResetPWD from "./components/pages/auth/ResetPWD";
 import BookRequestPage from "./components/BookRequestPage";
 import BookSellingPage from "./components/BookSellingPage";
+//********************************************* */
+import HomeDashboard from "./dashboard/pages/home/HomeDashboard";
+import Sidebar from "./dashboard/components/sidebar/Sidebar";
+import Topbar from "./dashboard/components/topbar/Topbar";
+import UserList from "./dashboard/pages/userList/UserList";
+import User from "./dashboard/pages/user/User";
+import NewUser from "./dashboard/pages/newUser/NewUser";
+import ProductList from "./dashboard/pages/productList/ProductList";
+import Product from "./dashboard/pages/product/Product";
+import NewProduct from "./dashboard/pages/newProduct/NewProduct";
+import DisplayRecommBook from "./components/DisplayRecommBook";
 
 function App() {
-  const [theme, setTheme] = useState("light");
-  const changeTheme = () => {
-    theme === "dark" ? setTheme("light") : setTheme("dark");
-  };
-  useEffect(() => {
-    const registerAnimations = () => {
-      const sr = scrollreveal({
-        origin: "bottom",
-        distance: "80px",
-        duration: 1000,
-        reset: false,
-      });
-      sr.reveal(
-        `
-        nav,
-        .home,
-        .services-container,
-        .categories-container,
-        .recommend-container,
-        .choose-us-container,
-        .products-container,
-        .promo-container,
-        footer
-    `,
-        {
-          interval: 500,
-        }
-      );
-    };
-    registerAnimations();
-  }, []);
   window.setTimeout(() => {
     const home = document.getElementsByClassName("home");
     //home[0].style.transform = "none";
   }, 1500);
+  /********************** */
+  const isLogged = true;
+  /********************** */
+
   return (
-    <div data-theme={theme} className="app">
+    <div className="app">
       <ScrollTop />
-      <Navbar changeTheme={changeTheme} currentTheme={theme} />
+
       <BrowserRouter>
+        <Navbar isLogged={isLogged} />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -66,10 +51,39 @@ function App() {
             <Route path="reset" element={<ResetPWD />} />
             <Route path="request" element={<BookRequestPage />} />
             <Route path="sell" element={<BookSellingPage />} />
+            <Route path="recomm_book" element={<DisplayRecommBook />} />
+            //**************************************** *//
+            {/* <Route path="homeDashboard" element={<HomeDashboard />} /> */}
+            {/* <Route path="users" element={<UserList />} />
+            <Route path="user/:userId" element={<User />} />
+            <Route path="newUser" element={<NewUser />} />
+            <Route path="products" element={<ProductList />} />
+            <Route path="product/:productId" element={<Product />} />
+            <Route path="newproduct" element={<NewProduct />} />  */}
           </Route>
           <Route path="*" element={<h1>Error 404... Page not found !!! </h1>} />
         </Routes>
       </BrowserRouter>
+
+      {/* <BrowserRouter>
+        <Topbar />
+        <Sidebar />
+        <div style={{ display: "flex", marginTop: "10px" }}>
+          <Sidebar />
+        </div>
+
+        <Routes>
+          <Route path="/homeDashboard" element={<HomeDashboard />}>
+            <Route path="users" element={<UserList />} />
+            <Route path="user/:userId" element={<User />} />
+            <Route path="newUser" element={<NewUser />} />
+            <Route path="products" element={<ProductList />} />
+            <Route path="product/:productId" element={<Product />} />
+            <Route path="newproduct" element={<NewProduct />} />
+          </Route>
+          <Route path="*" element={<h1>Error 404... Page not found !!! </h1>} />
+        </Routes>
+      </BrowserRouter> */}
 
       {/* <Home /> */}
     </div>

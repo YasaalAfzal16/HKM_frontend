@@ -9,47 +9,58 @@ import category7 from "../assets/category7.png";
 import category8 from "../assets/category8.png";
 
 function Categories() {
+  // const categories = [
+  //   {
+  //     image: category1,
+  //     title: "Fashion",
+  //     description: "290K Items",
+  //   },
+  //   {
+  //     image: category2,
+  //     title: "Headphone",
+  //     description: "3M Items",
+  //   },
+  //   {
+  //     image: category3,
+  //     title: "Laptop",
+  //     description: "1.2M Items",
+  //   },
+  //   {
+  //     image: category4,
+  //     title: "Music",
+  //     description: "751K Items",
+  //   },
+  //   {
+  //     image: category5,
+  //     title: "Photography",
+  //     description: "1.0M Items",
+  //   },
+  //   {
+  //     image: category6,
+  //     title: "Furniture",
+  //     description: "88K Items",
+  //   },
+  //   {
+  //     image: category7,
+  //     title: "Health",
+  //     description: "761K Items",
+  //   },
+  //   {
+  //     image: category8,
+  //     title: "Sports",
+  //     description: "2.9K Items",
+  //   },
+  // ];
+
   const categories = [
-    {
-      image: category1,
-      title: "Fashion",
-      description: "290K Items",
-    },
-    {
-      image: category2,
-      title: "Headphone",
-      description: "3M Items",
-    },
-    {
-      image: category3,
-      title: "Laptop",
-      description: "1.2M Items",
-    },
-    {
-      image: category4,
-      title: "Music",
-      description: "751K Items",
-    },
-    {
-      image: category5,
-      title: "Photography",
-      description: "1.0M Items",
-    },
-    {
-      image: category6,
-      title: "Furniture",
-      description: "88K Items",
-    },
-    {
-      image: category7,
-      title: "Health",
-      description: "761K Items",
-    },
-    {
-      image: category8,
-      title: "Sports",
-      description: "2.9K Items",
-    },
+    "Fiction",
+    "Non-Fiction",
+    "Classics",
+    "Action",
+    "Adventure",
+    "Detective",
+    "Horror",
+    "Comics",
   ];
 
   return (
@@ -59,12 +70,12 @@ function Categories() {
           <h2>Categories</h2>
         </div>
         <div className="categories">
-          {categories.map(({ image, title, description }, index) => {
+          {categories.map((title, index) => {
             return (
               <div className="category" key={index}>
-                <img src={image} alt="Category" />
-                <h4>{title}</h4>
-                <p>{description}</p>
+                {/* <img src={image} alt="Category" /> */}
+                <h3>{title}</h3>
+                {/* <p>{description}</p> */}
               </div>
             );
           })}

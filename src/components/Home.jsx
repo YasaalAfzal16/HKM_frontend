@@ -9,7 +9,6 @@ import Promo from "./Promo";
 import Choose from "./Choose";
 import Footer from "./Footer";
 import axios from "axios";
-import { Grid, Card } from "@mui/material";
 import DisplaySrchBook from "./DisplaySrchBook";
 function Home() {
   const [searchItem, setSearchItem] = useState("");
@@ -36,7 +35,7 @@ function Home() {
       <div className="home">
         <div className="container mx-3 py-3">
           <div className="title-container">
-            <h2>Browse Million Products for Your Needs</h2>
+            <h2>Browse Millions of Books for Your Needs</h2>
             <div className="input-container">
               <input
                 type="text"
@@ -62,11 +61,11 @@ function Home() {
         <DisplaySrchBook book={bookData} />
       ) : (
         <>
-          <Services />
+          {/* <Services /> */}
           <Categories />
           <Recommend />
           <Choose />
-          <Products />
+          {/* <Products /> */}
           <Promo />
         </>
       )}

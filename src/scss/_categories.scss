@@ -29,6 +29,8 @@
         transition: var(--transition);
         &:hover {
           box-shadow: var(--elevate-shadow);
+          background-color: #26E4FF;
+          color: red;
         }
         h4 {
           color: var(--dark-blue);

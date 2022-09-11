@@ -68,15 +68,9 @@ nav {
               color: var(--light-blue);
               font-weight: bold;
             }
-            a:hover {
+            NavLink:hover {
               color: red;
               background-color: transparent;
-              text-decoration: underline;
-            }
-            a:active {
-              color: yellow;
-              background-color: transparent;
-              text-decoration: underline;
             }
             
             .sun {
