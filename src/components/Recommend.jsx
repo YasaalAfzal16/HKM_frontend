@@ -9,14 +9,10 @@ import mughal from "../assets/mughal.jpg";
 import pak_country from "../assets/pak_country.jpg";
 import sherlock_holmes from "../assets/sherlock_holmes.jpg";
 import war_and_peace from "../assets/war_and_peace.jpg";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Recommend() {
-  const [bk_nm, set_Bk_nm] = useState();
-
-  let bookName = {
-    recomm_bookName: bk_nm,
-  };
+  const navigate = useNavigate();
 
   const data = [
     {
@@ -52,8 +48,8 @@ function Recommend() {
                     src={image}
                     alt="Category"
                     onClick={() => {
-                      set_Bk_nm(text);
-                      <Navigate to="/recomm_book" />;
+                      console.log("image clicked...");
+                      navigate("/recomm_book", { state: { bk_nm: text } });
                     }}
                   />
                 </a>

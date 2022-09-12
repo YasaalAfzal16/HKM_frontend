@@ -6,14 +6,15 @@ import axios from "axios";
 import { useState } from "react";
 
 const DisplayRecommBook = () => {
-  let bk = useLocation();
+  let location = useLocation();
 
-  const book_name = bk.state.recomm_book;
+  const book_name = location.state.bk_nm;
+  console.log(book_name);
 
   const navigate = useNavigate();
   const [bookData, setBookData] = useState([]);
 
-  if (!!book_name) {
+  try {
     axios
       .get(
         "https://www.googleapis.com/books/v1/volumes?q=" +
@@ -24,16 +25,17 @@ const DisplayRecommBook = () => {
       .then((data) => {
         console.log(data.data.items);
         setBookData(data.data.items);
-      })
-      .catch((error) => console.log(error));
+      });
+  } catch (error) {
+    console.log(error);
   }
+
   return (
     <>
       <h3>{book_name}</h3>
       <DisplaySrchBook book={bookData} />
-      <Button color="error" onClick={navigate("/")}>
-        BACK
-      </Button>
+
+      <Button color="error">BACK</Button>
     </>
   );
 };

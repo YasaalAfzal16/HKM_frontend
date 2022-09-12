@@ -64,18 +64,6 @@ function Navbar({ isLogged }) {
                   </NavLink>
                 </li>
               )}
-              {/* {isLogged && (
-                <li>
-                  <NavLink
-                    to="/request"
-                    style={({ isActive }) =>
-                      isActive ? { color: "blue" } : { color: "" }
-                    }
-                  >
-                    Request Book
-                  </NavLink>
-                </li>
-              )} */}
               {isLogged && (
                 <li>
                   <NavLink
