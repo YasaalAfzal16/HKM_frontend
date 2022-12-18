@@ -1,91 +1,106 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "./components/Navbar";
-
 import Home from "./components/Home";
 import "./scss/index.scss";
 
 import ScrollTop from "./components/ScrollTop";
 
-import scrollreveal from "scrollreveal";
+import PrivateRoutes from "./PrivateRoutes";
+
 import Layout from "./components/pages/Layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import LoginReg from "./components/pages/auth/LoginReg";
 import PwordResetEmail from "./components/pages/auth/PwordResetEmail";
 import ResetPWD from "./components/pages/auth/ResetPWD";
 import BookRequestPage from "./components/BookRequestPage";
 import BookSellingPage from "./components/BookSellingPage";
-//********************************************* */
-import HomeDashboard from "./dashboard/pages/home/HomeDashboard";
-import Sidebar from "./dashboard/components/sidebar/Sidebar";
-import Topbar from "./dashboard/components/topbar/Topbar";
-import UserList from "./dashboard/pages/userList/UserList";
-import User from "./dashboard/pages/user/User";
-import NewUser from "./dashboard/pages/newUser/NewUser";
-import ProductList from "./dashboard/pages/productList/ProductList";
-import Product from "./dashboard/pages/product/Product";
-import NewProduct from "./dashboard/pages/newProduct/NewProduct";
 import DisplayRecommBook from "./components/DisplayRecommBook";
+import BookRegisterPage from "./components/BookRegisterPage";
+import UserLogin from "./components/pages/auth/UserLogin";
+import UserRegistration from "./components/pages/auth/UserRegistration";
+/*********************************************************************** */
+
+import Home_Dashboard from "./dashboard/pages/home/Home_Dashboard";
+import Login from "./dashboard/pages/login/Login";
+import List from "./dashboard/pages/list/List";
+import Single from "./dashboard/pages/single/Single";
+import New from "./dashboard/pages/new/New";
+import { productInputs, userInputs } from "./formSource";
+import "./dashboard/style/dark.scss";
+import { DarkModeContext } from "./dashboard/context/darkModeContext";
+import { useSelector } from "react-redux";
+import UserDashboard from "./userDashboard/UserDashboard";
+import EditPassword from "./userDashboard/pages/Home/EditPassword";
+import DisplayBooks from "./userDashboard/pages/Home/DisplayBooks";
+import DisplayBooksAdmin from "./dashboard/pages/DisplayBooksAdmin";
 
 function App() {
   window.setTimeout(() => {
     const home = document.getElementsByClassName("home");
-    //home[0].style.transform = "none";
   }, 1500);
-  /********************** */
-  const isLogged = true;
-  /********************** */
 
   return (
     <div className="app">
       <ScrollTop />
 
       <BrowserRouter>
-        <Navbar isLogged={isLogged} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="login" element={<LoginReg />} />
+            <Route path="userLogin" element={<UserLogin />} />
+            <Route path="userRegisteration" element={<UserRegistration />} />
             <Route path="pwordReset" element={<PwordResetEmail />} />
             <Route path="reset" element={<ResetPWD />} />
+            {/* <Route element={<PrivateRoutes />}> */}
             <Route path="request" element={<BookRequestPage />} />
             <Route path="sell" element={<BookSellingPage />} />
             <Route path="recomm_book" element={<DisplayRecommBook />} />
             //**************************************** *//
-            {/* <Route path="homeDashboard" element={<HomeDashboard />} /> */}
-            {/* <Route path="users" element={<UserList />} />
-            <Route path="user/:userId" element={<User />} />
-            <Route path="newUser" element={<NewUser />} />
-            <Route path="products" element={<ProductList />} />
-            <Route path="product/:productId" element={<Product />} />
-            <Route path="newproduct" element={<NewProduct />} />  */}
+            <Route path="dashboard">
+              <Route index element={<Home_Dashboard />} />
+              <Route path="login" element={<Login />} />
+              <Route path="RegisterBook" element={<BookRegisterPage />} />
+              <Route path="displayBooksAdmin" element={<DisplayBooksAdmin />} />
+              <Route path="users">
+                <Route index element={<List />} />
+                <Route path=":userId" element={<Single />} />
+                <Route
+                  path="new"
+                  element={<New inputs={userInputs} title="Add New User" />}
+                />
+              </Route>
+              <Route path="products">
+                <Route index element={<List />} />
+                <Route path=":productId" element={<Single />} />
+                <Route
+                  path="new"
+                  element={
+                    <New inputs={productInputs} title="Add New Product" />
+                  }
+                />
+              </Route>
+            </Route>
+            /************************************************** */
+            <Route path="user-dashboard">
+              <Route index element={<UserDashboard />} />
+              <Route path="reset-userPassword" element={<EditPassword />} />
+              <Route path="userBooks" element={<DisplayBooks />} />
+            </Route>
+            {/* </Route> */}
           </Route>
-          <Route path="*" element={<h1>Error 404... Page not found !!! </h1>} />
         </Routes>
+        {/* <Routes>
+          
+        </Routes> */}
       </BrowserRouter>
 
-      {/* <BrowserRouter>
-        <Topbar />
-        <Sidebar />
-        <div style={{ display: "flex", marginTop: "10px" }}>
-          <Sidebar />
-        </div>
-
-        <Routes>
-          <Route path="/homeDashboard" element={<HomeDashboard />}>
-            <Route path="users" element={<UserList />} />
-            <Route path="user/:userId" element={<User />} />
-            <Route path="newUser" element={<NewUser />} />
-            <Route path="products" element={<ProductList />} />
-            <Route path="product/:productId" element={<Product />} />
-            <Route path="newproduct" element={<NewProduct />} />
-          </Route>
-          <Route path="*" element={<h1>Error 404... Page not found !!! </h1>} />
-        </Routes>
-      </BrowserRouter> */}
-
-      {/* <Home /> */}
+      {/* <div className={darkMode ? "app dark" : "app"}>
+        <BrowserRouter>
+          
+        </BrowserRouter>
+      </div> */}
     </div>
   );
 }

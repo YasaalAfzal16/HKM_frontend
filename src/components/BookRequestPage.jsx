@@ -1,10 +1,4 @@
-import {
-  TextField,
-  Button,
-  Box,
-  Alert,
-  Grid,
-} from "@mui/material";
+import { TextField, Button, Box, Alert, Grid } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,9 +8,11 @@ const BookRequestPage = () => {
     msg: "",
     type: "",
   });
-  
+
   const navigate = useNavigate();
-  const navToHome=()=>{navigate('/')}
+  const navToHome = () => {
+    navigate("/");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -24,23 +20,24 @@ const BookRequestPage = () => {
       Book_name: data.get("bk-name"),
       Author_name: data.get("author-name"),
       Publisher_name: data.get("publisher-name"),
-
+      Edition: data.get("edition"),
     };
     if (
       actualData.Book_name &&
       actualData.Author_name &&
-      actualData.Publisher_name 
+      actualData.Publisher_name &&
+      actualData.Edition
     ) {
-        console.log(actualData);
-        document.getElementById("book-request-form").reset();
-        setError({
-          status: true,
-          msg: "Book`s request successful !!! ",
-          type: "success",
-        });
-        // setTimeout(() => {
-        //   navigate("/login");
-        // }, 2000);
+      console.log(actualData);
+      document.getElementById("book-request-form").reset();
+      setError({
+        status: true,
+        msg: "Book`s request successful !!! ",
+        type: "success",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } else {
       setError({ status: true, msg: "All fields are required", type: "error" });
     }
@@ -57,7 +54,10 @@ const BookRequestPage = () => {
             id="book-request-form"
             onSubmit={handleSubmit}
           >
-          <h1>Enter book details</h1>
+            <h1 style={{ textAlign: "center", paddingBottom: "7px" }}>
+              <u>Book Request Page</u>
+            </h1>
+            <h3>Enter book details</h3>
             <TextField
               required
               fullWidth
@@ -84,6 +84,14 @@ const BookRequestPage = () => {
               margin="normal"
             />
 
+            <TextField
+              required
+              fullWidth
+              id="edition"
+              name="edition"
+              label="Year of Edition"
+              margin="normal"
+            />
 
             <Box textAlign="center">
               <Button
@@ -96,7 +104,7 @@ const BookRequestPage = () => {
               </Button>
             </Box>
             <Box textAlign="center">
-              <Button 
+              <Button
                 variant="contained"
                 color="success"
                 sx={{ mt: 3, mb: 2, px: 5 }}

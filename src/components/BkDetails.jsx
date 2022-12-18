@@ -1,4 +1,5 @@
-import { Button, Grid, Rating } from "@mui/material";
+import { Box, Button, Grid, Rating } from "@mui/material";
+import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../scss/_bkDetails.scss";
@@ -44,9 +45,15 @@ const BkDetails = ({ show, item }) => {
               <h6>
                 {pubLisher} | <span>{dateOfPublish}</span>
               </h6>
-              <Button variant="contained" color="error" href="/">
-                Back
-              </Button>
+              <Box pt={2} textAlign="center">
+                <Button variant="contained" color="error" href="/">
+                  Back
+                </Button>
+                &nbsp;&nbsp;
+                <Button variant="outlined" endIcon={<PhoneForwardedIcon />}>
+                  CHAT
+                </Button>
+              </Box>
             </Grid>
             <Grid>
               <hr />

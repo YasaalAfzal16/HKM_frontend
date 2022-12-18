@@ -1,5 +1,6 @@
 import { Grid, TextField, Button, Box, Alert } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const PwordResetEmail = () => {
   const [error, setError] = useState({
     status: false,
@@ -28,6 +29,10 @@ const PwordResetEmail = () => {
       });
     }
   };
+  const navigate = useNavigate();
+  const navToHome = () => {
+    navigate("/");
+  };
   return (
     <>
       <Grid container justifyContent="center">
@@ -55,6 +60,16 @@ const PwordResetEmail = () => {
                 sx={{ mt: 3, mb: 2, px: 5 }}
               >
                 SEND
+              </Button>
+            </Box>
+            <Box textAlign="center">
+              <Button
+                variant="contained"
+                color="success"
+                sx={{ mt: 3, mb: 2, px: 5 }}
+                onClick={navToHome}
+              >
+                BACK
               </Button>
             </Box>
             {error.status ? (

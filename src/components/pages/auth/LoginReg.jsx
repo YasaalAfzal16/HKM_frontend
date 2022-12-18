@@ -1,4 +1,4 @@
-import { Grid, Card, Typography, Tabs, Tab, Box } from "@mui/material";
+import { Grid, Card, Tabs, Tab, Box } from "@mui/material";
 import { useState } from "react";
 import login1 from "../../../assets/login1.png";
 import UserLogin from "./UserLogin";
@@ -35,11 +35,11 @@ const LoginReg = () => {
         ></Grid>
         <Grid item lg={5} sm={7} xs={12}>
           <Card sx={{ width: "100%", height: "100%" }}>
-            <Box sx={{ mx: 3, height: 530 }}>
+            <Box sx={{ mx: 3, height: 630 }}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
-                  value={value}
-                  onChange={handleChange}
+                  // value={value}
+                  // onChange={handleChange}
                   textColor="secondary"
                   indicatorColor="secondary"
                 >
@@ -48,22 +48,23 @@ const LoginReg = () => {
                     sx={{
                       textTransform: "none",
                       fontWeight: "bold",
+                      color: "blue",
                     }}
                   ></Tab>
-                  <Tab
+                  {/* <Tab
                     label="Registration"
                     sx={{
                       textTransform: "none",
                       fontWeight: "bold",
                     }}
-                  ></Tab>
+                  ></Tab> */}
                 </Tabs>
-                <TabPanel value={value} index={0}>
+                <TabPanel>
                   <UserLogin />
                 </TabPanel>
-                <TabPanel value={value} index={1}>
+                {/* <TabPanel value={value} index={1}>
                   <UserRegistration />
-                </TabPanel>
+                </TabPanel> */}
               </Box>
             </Box>
           </Card>
